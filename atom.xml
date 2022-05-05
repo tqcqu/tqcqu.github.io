@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://tqcqu.github.io/"/>
-  <updated>2019-10-29T09:12:35.000Z</updated>
+  <updated>2022-05-05T15:50:45.118Z</updated>
   <id>http://tqcqu.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vscode配置github</title>
+    <link href="http://tqcqu.github.io/604-vscode-git/"/>
+    <id>http://tqcqu.github.io/604-vscode-git/</id>
+    <published>1970-01-01T00:00:00.000Z</published>
+    <updated>2022-05-05T15:50:45.118Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文内容：1、windows环境下在vscode中配置git。</p><p>维护：<code>何文喆（2022秋入学硕士生）</code></p><p>部署：<code>郭伏雨（博士生）</code></p><a id="more"></a><p>本文代码默认均为bash，代码中不应该出现中文，出现的中文要对应替换。</p><p>中文句号后出现:end:，表示上下文间断。</p><h2 id="在Windows系统下的VScode中配置Git"><a href="#在Windows系统下的VScode中配置Git" class="headerlink" title="在Windows系统下的VScode中配置Git"></a>在Windows系统下的VScode中配置Git</h2><h3 id="一、任务描述"><a href="#一、任务描述" class="headerlink" title="一、任务描述"></a>一、任务描述</h3><h5 id="1-1-任务目的"><a href="#1-1-任务目的" class="headerlink" title="1.1  任务目的"></a>1.1  任务目的</h5><p>本文档的目的是在VScode中配置Git，从而能够方便地与Github进行通讯，拉去与提交程序。</p><h5 id="1-2-任务材料"><a href="#1-2-任务材料" class="headerlink" title="1.2  任务材料"></a>1.2  任务材料</h5><p>Git软件、VScode软件、科学上网工具（PG2Ray）</p><h5 id="1-3-参考材料"><a href="#1-3-参考材料" class="headerlink" title="1.3  参考材料"></a>1.3  参考材料</h5><p>（1）Git安装教程：<a href="https://blog.csdn.net/mukes/article/details/115693833" target="_blank" rel="noopener">https://blog.csdn.net/mukes/article/details/115693833</a></p><p>（2）VScode配置git教程：<a href="https://blog.csdn.net/czjl6886/article/details/122129576" target="_blank" rel="noopener">https://blog.csdn.net/czjl6886/article/details/122129576</a></p><h3 id="二、git的安装"><a href="#二、git的安装" class="headerlink" title="二、git的安装"></a>二、git的安装</h3><h5 id="2-1-Git的下载"><a href="#2-1-Git的下载" class="headerlink" title="2.1  Git的下载"></a>2.1  Git的下载</h5><p>直接在Git官网<a href="https://git-scm.com/下载即可，选择Windows系统的Git安装包。此处建议科学上网，提高下载速度。" target="_blank" rel="noopener">https://git-scm.com/下载即可，选择Windows系统的Git安装包。此处建议科学上网，提高下载速度。</a></p><h5 id="2-2-Git的安装"><a href="#2-2-Git的安装" class="headerlink" title="2.2  Git的安装"></a>2.2  Git的安装</h5><p>安装教程在参考材料（1）中介绍的很详细，此处仅介绍部分需要注意的环节。</p><p>（1）第二步：选择安装目录</p><p>​        建议安装在D盘中，并且确保父目录中没有任何中文，避免未来因不明原因报错。</p><p>​        注：此处需要记住Git的安装路径，接下来配置VScode时会用到。</p><p>（2）第三步：选择安装组件</p><p>​        建议不选最后两个，倒数第二个是每日检查Git软件是否更新，倒数第一个是将Git Bash的配置文件添加在Windows terminal中，需要下载Windows terminal配合使用，这两个选项没有必要。</p><p>（3）第五步：选择Git默认编辑器</p><p>​        此处选择VScode作为默认编辑器，需要下载VScode配合使用，此外，还需要在我的电脑-属性-高级系统设置-高级-环境变量-系统变量-path-编辑中添加VScode的安装地址，为稳妥起见，可添加D:\vscode\Microsoft VS Code和D:\vscode\Microsoft VS Code\bin两个地址。</p><p>（4）其余部分按照参考材料（1）中配置，或者选择安装程序默认的即可。</p><h3 id="三、在VScode中配置Git"><a href="#三、在VScode中配置Git" class="headerlink" title="三、在VScode中配置Git"></a>三、在VScode中配置Git</h3><p>（1）在VScode中同时按下ctrl与，键，打开setting界面。</p><p>（2）在setting的搜索框中输入git.path，会跳出唯一一个选项</p><center>    <img style="border-radius: 0.5125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/Vvh59TFg/1.png" width="600">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;"></div></center><p>（3）点击Edit in settings.json，进入设置。在设置中添加Git的安装地址，如：”git.path”: “D:/git/Git/cmd/git.exe”。注意，要添加的是cmd文件夹下的git.exe文件，而不是添加git文件夹。</p><p>（4）接下来就可以在VScode的左侧菜单中选择仓库位置了</p><center>    <img style="border-radius: 0.5125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/VvvdC1X5/2.png" width="600">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;"></div></center><p>​        点击上图红圈位置，选择clone，页面正上方出现clone from github</p><center>    <img style="border-radius: 0.5125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/FRDYz1d2/3.png" width="600">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;"></div></center><p>​        接下来可能需要转到浏览器中同意clone，并且需要输入Github的密码进行确认，由于我在进行测试时已经输入过，因此此处没有截图。</p><p>（5）clone之前还需要选择仓库地址Repository Location，选择好之后VScode就会进行clone。</p><p>（6）在程序文件中更改代码时，左侧的change栏和上方的标签页会提示哪些文件被修改了。</p><p>修改完成后，先保存文件，（有时也可能不需要保存文件），然后点击左侧change栏的 + 号，文件就被放置在了缓存区，此 + 号表示add。</p><p>（7）在下图红线标注的地方写入此次更改的信息后，就可以点击篮圈中的 √ 号，完成commit命令。</p><center>    <img style="border-radius: 0.5125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="https://i.postimg.cc/j5sWRy5H/4.png" width="600">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;"></div></center><p>（8）点击上图黄圈处，在展开的菜单中依次点击pull 和push，或者直接点击Sync Changes 进行pull和push。</p><p>（9）命令完成后VScode需要对Github账号进行认证，按步完成即可。</p><p>至此，在Windows系统下的VScode中配置Git已经初步完成。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文内容：1、windows环境下在vscode中配置git。&lt;/p&gt;
+&lt;p&gt;维护：&lt;code&gt;何文喆（2022秋入学硕士生）&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;部署：&lt;code&gt;郭伏雨（博士生）&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>唐倩团队</title>
