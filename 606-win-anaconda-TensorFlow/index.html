@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Windows下深度学习的虚拟环境搭建 | 重庆大学机械学院唐倩团队</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="本文内容：1、Windows下深度学习的虚拟环境搭建，涉及到anaconda、cuda、cudnn、tensorflow安装。 维护：吴海鹏（2020秋入学硕士生） 部署：郭伏雨（博士生）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下深度学习的虚拟环境搭建">
+<meta property="og:url" content="http://tqcqu.github.io/606-win-anaconda-TensorFlow/index.html">
+<meta property="og:site_name" content="重庆大学机械学院唐倩团队">
+<meta property="og:description" content="本文内容：1、Windows下深度学习的虚拟环境搭建，涉及到anaconda、cuda、cudnn、tensorflow安装。 维护：吴海鹏（2020秋入学硕士生） 部署：郭伏雨（博士生）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-05-06T14:31:50.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows下深度学习的虚拟环境搭建">
+<meta name="twitter:description" content="本文内容：1、Windows下深度学习的虚拟环境搭建，涉及到anaconda、cuda、cudnn、tensorflow安装。 维护：吴海鹏（2020秋入学硕士生） 部署：郭伏雨（博士生）">
+    
+        <link rel="alternate" type="application/atom+xml" title="重庆大学机械学院唐倩团队" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.bmp">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.bmp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">唐倩</h5>
+          <a href="mailto:tqcqu@cqu.edu.cn" title="tqcqu@cqu.edu.cn" class="mail">tqcqu@cqu.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Windows下深度学习的虚拟环境搭建</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Windows下深度学习的虚拟环境搭建</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="1970-01-01T00:00:00.000Z" itemprop="datePublished" class="page-time">
+  1970-01-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#win10，在anaconda虚拟环境中安装特定的深度学习版本（以TensorFlow为例）"><span class="post-toc-number">1.</span> <span class="post-toc-text">win10，在anaconda虚拟环境中安装特定的深度学习版本（以TensorFlow为例）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#以下内容是在已经安装好anaconda软件后配置的"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">以下内容是在已经安装好anaconda软件后配置的</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、安装cuda及cudnn"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">一、安装cuda及cudnn</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-离线安装"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">1.离线安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-anaconda虚拟环境中"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">2.anaconda虚拟环境中</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#a-创建虚拟环境：打开anaconda-prompt，输入："><span class="post-toc-number">1.1.2.0.1.</span> <span class="post-toc-text">a.创建虚拟环境：打开anaconda prompt，输入：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#b-激活虚拟环境并安装cuda和cudnn"><span class="post-toc-number">1.1.2.0.2.</span> <span class="post-toc-text">b.激活虚拟环境并安装cuda和cudnn</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#c-cuda版本也可自行选择，cudnn和cuda版本对应请自行百度。如果下载很慢容易断开，建议搭个梯子或者使用清华镜像源："><span class="post-toc-number">1.1.2.0.3.</span> <span class="post-toc-text">c.cuda版本也可自行选择，cudnn和cuda版本对应请自行百度。如果下载很慢容易断开，建议搭个梯子或者使用清华镜像源：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#d-检测cuda是否安装成功："><span class="post-toc-number">1.1.2.0.4.</span> <span class="post-toc-text">d.检测cuda是否安装成功：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、安装tensorflow-gpu"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">二、安装tensorflow-gpu</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-tensorflow与cuda、cudnn、pyhton的版本都有对应关系，具体对应关系可上网查阅"><span class="post-toc-number">1.2.0.0.1.</span> <span class="post-toc-text">1.tensorflow与cuda、cudnn、pyhton的版本都有对应关系，具体对应关系可上网查阅</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-numpy安装"><span class="post-toc-number">1.2.0.0.2.</span> <span class="post-toc-text">2.numpy安装</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-验证"><span class="post-toc-number">1.2.0.0.3.</span> <span class="post-toc-text">3.验证</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、为不同虚拟环境配置不同的cuda"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">三、为不同虚拟环境配置不同的cuda</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-打开anaconda-prompt，进入需要配置的虚拟环境："><span class="post-toc-number">1.3.0.0.1.</span> <span class="post-toc-text">1.打开anaconda prompt，进入需要配置的虚拟环境：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-将prompt窗口定位到虚拟环镜主目录下："><span class="post-toc-number">1.3.0.0.2.</span> <span class="post-toc-text">2.将prompt窗口定位到虚拟环镜主目录下：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-执行以下命令："><span class="post-toc-number">1.3.0.0.3.</span> <span class="post-toc-text">3.执行以下命令：</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#4-在activate-d文件夹中创建-env-vars-bat文件，将cuda版本添加到临时系统变量中。"><span class="post-toc-number">1.3.0.0.4.</span> <span class="post-toc-text">4.在activate.d文件夹中创建 env_vars.bat文件，将cuda版本添加到临时系统变量中。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#5-在deactivate-d文件夹中创建同名文件env-vars-bat，将环境变量重置为原始的内容。"><span class="post-toc-number">1.3.0.0.5.</span> <span class="post-toc-text">5.在deactivate.d文件夹中创建同名文件env_vars.bat，将环境变量重置为原始的内容。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#6-测试"><span class="post-toc-number">1.3.0.0.6.</span> <span class="post-toc-text">6.测试</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、如何在pycharm中选定已配置的虚拟环境"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">四、如何在pycharm中选定已配置的虚拟环境</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-606-win-anaconda-TensorFlow"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Windows下深度学习的虚拟环境搭建</h1>
+        <div class="post-meta">
+            <time class="post-time" title="1970-01-01 08:00:00" datetime="1970-01-01T00:00:00.000Z"  itemprop="datePublished">1970-01-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文内容：1、Windows下深度学习的虚拟环境搭建，涉及到anaconda、cuda、cudnn、tensorflow安装。</p>
+<p>维护：<code>吴海鹏（2020秋入学硕士生）</code></p>
+<p>部署：<code>郭伏雨（博士生）</code></p>
+<a id="more"></a>
+
+<h1 id="win10，在anaconda虚拟环境中安装特定的深度学习版本（以TensorFlow为例）"><a href="#win10，在anaconda虚拟环境中安装特定的深度学习版本（以TensorFlow为例）" class="headerlink" title="win10，在anaconda虚拟环境中安装特定的深度学习版本（以TensorFlow为例）"></a>win10，在anaconda虚拟环境中安装特定的深度学习版本（以TensorFlow为例）</h1><h3 id="以下内容是在已经安装好anaconda软件后配置的"><a href="#以下内容是在已经安装好anaconda软件后配置的" class="headerlink" title="以下内容是在已经安装好anaconda软件后配置的"></a>以下内容是在已经安装好anaconda软件后配置的</h3><h2 id="一、安装cuda及cudnn"><a href="#一、安装cuda及cudnn" class="headerlink" title="一、安装cuda及cudnn"></a>一、安装cuda及cudnn</h2><h3 id="1-离线安装"><a href="#1-离线安装" class="headerlink" title="1.离线安装"></a>1.离线安装</h3><p>1.根据项目要求，先利用官网安装好需要的cuda版本，<strong>不需要配置环境变量</strong>。</p>
+<p>2.经过实践证明，通过conda命令安装的cuda，不能完成配置，<strong>cuda仍为系统环境变量配置版本</strong>。</p>
+<h3 id="2-anaconda虚拟环境中"><a href="#2-anaconda虚拟环境中" class="headerlink" title="2.anaconda虚拟环境中"></a>2.anaconda虚拟环境中</h3><h5 id="a-创建虚拟环境：打开anaconda-prompt，输入："><a href="#a-创建虚拟环境：打开anaconda-prompt，输入：" class="headerlink" title="a.创建虚拟环境：打开anaconda prompt，输入："></a>a.创建虚拟环境：打开anaconda prompt，输入：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow python=3.7 # tensorflow为虚拟环境名称可自定义；python版本也可自己设定</span><br></pre></td></tr></table></figure>
+
+<h5 id="b-激活虚拟环境并安装cuda和cudnn"><a href="#b-激活虚拟环境并安装cuda和cudnn" class="headerlink" title="b.激活虚拟环境并安装cuda和cudnn"></a>b.激活虚拟环境并安装cuda和cudnn</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">activate tensorflow  #激活虚拟环境</span><br><span class="line">conda install cudatoolkit=10.1 # 安装需要的cuda对应版本，与之前离线安装版本对应</span><br><span class="line">conda install cudnn=7.6.0 # 安装cudnn 对应版本可网上查阅</span><br></pre></td></tr></table></figure>
+
+<h5 id="c-cuda版本也可自行选择，cudnn和cuda版本对应请自行百度。如果下载很慢容易断开，建议搭个梯子或者使用清华镜像源："><a href="#c-cuda版本也可自行选择，cudnn和cuda版本对应请自行百度。如果下载很慢容易断开，建议搭个梯子或者使用清华镜像源：" class="headerlink" title="c.cuda版本也可自行选择，cudnn和cuda版本对应请自行百度。如果下载很慢容易断开，建议搭个梯子或者使用清华镜像源："></a>c.cuda版本也可自行选择，cudnn和cuda版本对应请自行百度。如果下载很慢容易断开，建议搭个梯子或者使用清华镜像源：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge </span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</span><br></pre></td></tr></table></figure>
+
+<h5 id="d-检测cuda是否安装成功："><a href="#d-检测cuda是否安装成功：" class="headerlink" title="d.检测cuda是否安装成功："></a>d.检测cuda是否安装成功：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure>
+
+<p><strong>注：</strong></p>
+<p><strong>1.经实践证明，可以直接安装tensorflow-gpu，即直接执行步骤二，其对应的cuda与cudnn可自动配置安装。</strong></p>
+<p><strong>2.若配置其他框架，仍需按顺序安装。</strong></p>
+<h2 id="二、安装tensorflow-gpu"><a href="#二、安装tensorflow-gpu" class="headerlink" title="二、安装tensorflow-gpu"></a>二、安装tensorflow-gpu</h2><h5 id="1-tensorflow与cuda、cudnn、pyhton的版本都有对应关系，具体对应关系可上网查阅"><a href="#1-tensorflow与cuda、cudnn、pyhton的版本都有对应关系，具体对应关系可上网查阅" class="headerlink" title="1.tensorflow与cuda、cudnn、pyhton的版本都有对应关系，具体对应关系可上网查阅"></a>1.tensorflow与cuda、cudnn、pyhton的版本都有对应关系，具体对应关系可上网查阅</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install tensorflow-gpu==2.3.0</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-numpy安装"><a href="#2-numpy安装" class="headerlink" title="2.numpy安装"></a>2.numpy安装</h5><p>tensorflow与numpy有版本对应关系，可以先安装tensorflow后，运行程序报错再按需求选择较低版本安装；或者直接在安装tensorflow前安装合适版本的numpy直接安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install numpy==1.16.0 # 安装numpy版本，安装之前请先卸载</span><br><span class="line">pip uninstall numpy # 卸载numpy</span><br><span class="line">conda list # 显示新建虚拟环境所有已安装模块</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-验证"><a href="#3-验证" class="headerlink" title="3.验证"></a>3.验证</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">version = tf.__version__</span><br><span class="line">gpu_ok = tf.test.is_gpu_available()</span><br><span class="line">print(&quot;tf version:&quot;,version,&quot;\nuse GPU&quot;,gpu_ok)</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、为不同虚拟环境配置不同的cuda"><a href="#三、为不同虚拟环境配置不同的cuda" class="headerlink" title="三、为不同虚拟环境配置不同的cuda"></a>三、为不同虚拟环境配置不同的cuda</h2><h5 id="1-打开anaconda-prompt，进入需要配置的虚拟环境："><a href="#1-打开anaconda-prompt，进入需要配置的虚拟环境：" class="headerlink" title="1.打开anaconda prompt，进入需要配置的虚拟环境："></a>1.打开anaconda prompt，进入需要配置的虚拟环境：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">activate tensorflow  #激活虚拟环境</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-将prompt窗口定位到虚拟环镜主目录下："><a href="#2-将prompt窗口定位到虚拟环镜主目录下：" class="headerlink" title="2.将prompt窗口定位到虚拟环镜主目录下："></a>2.将prompt窗口定位到虚拟环镜主目录下：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd Anaconda3\envs\tensorflow #anaconda默认安装在c盘</span><br><span class="line">cd /d D:\Users\Anaconda3\envs\tensorflow  #anaconda安装在其他位置</span><br><span class="line">显示效果：(tensorflow) D:\Users\Anaconda3\envs\tensorflow&gt;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-执行以下命令："><a href="#3-执行以下命令：" class="headerlink" title="3.执行以下命令："></a>3.执行以下命令：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir .\etc\conda\activate.d #创建activate.d文件夹</span><br><span class="line">mkdir .\etc\conda\deactivate.d #创建deactivate.d文件夹</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-在activate-d文件夹中创建-env-vars-bat文件，将cuda版本添加到临时系统变量中。"><a href="#4-在activate-d文件夹中创建-env-vars-bat文件，将cuda版本添加到临时系统变量中。" class="headerlink" title="4.在activate.d文件夹中创建 env_vars.bat文件，将cuda版本添加到临时系统变量中。"></a>4.在activate.d文件夹中创建 <strong>env_vars.bat</strong>文件，将cuda版本添加到临时系统变量中。</h5><p>a.创建.bat文件方法：右键-&gt;新建文本文档-&gt;另存为-&gt;文件名.bat，保存类型：所有文件</p>
+<p>b.内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@set CUDA_PATH=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin</span><br><span class="line">@set CUDA_NVVP=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\libnvvp</span><br><span class="line">@set CUDA_lib=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\lib\x64</span><br><span class="line">@set OLD_PATH=%PATH%</span><br><span class="line">@set PATH=%CUDA_PATH%;%CUDA_NVVP%;%CUDA_lib%;%PATH%;</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-在deactivate-d文件夹中创建同名文件env-vars-bat，将环境变量重置为原始的内容。"><a href="#5-在deactivate-d文件夹中创建同名文件env-vars-bat，将环境变量重置为原始的内容。" class="headerlink" title="5.在deactivate.d文件夹中创建同名文件env_vars.bat，将环境变量重置为原始的内容。"></a>5.在deactivate.d文件夹中创建同名文件<strong>env_vars.bat</strong>，将环境变量重置为原始的内容。</h5><p>文件内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@set PATH=%OLD_PATH%</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-测试"><a href="#6-测试" class="headerlink" title="6.测试"></a>6.测试</h5><p>分别在base环境与新建的tensorflow环境输入:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc --version</span><br></pre></td></tr></table></figure>
+
+<p>若base环境显示的cuda版本为之前添加环境变量的版本，而新虚拟环境的版本为上述步骤新建的，则配置成功。</p>
+<h2 id="四、如何在pycharm中选定已配置的虚拟环境"><a href="#四、如何在pycharm中选定已配置的虚拟环境" class="headerlink" title="四、如何在pycharm中选定已配置的虚拟环境"></a>四、如何在pycharm中选定已配置的虚拟环境</h2><p>1.新建的虚拟环境默认保存位置在anaconda安装路径中的envs文件</p>
+<p>2.打开pycharm后按照以下路径操作：</p>
+<p>a.file-&gt;setting-&gt;project:新建项目名-&gt;python interpreter-&gt;add</p>
+<p>b.Virtualenv Environment -&gt;existing environment-&gt;新建虚拟环境路径 -&gt;…..python.exe -&gt;ok</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2022-05-06T14:31:50.228Z" itemprop="dateUpdated">2022-05-06 22:31:50</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://tqcqu.github.io">
+            <img src="/img/avatar.bmp" alt="唐倩">
+            唐倩
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://tqcqu.github.io/606-win-anaconda-TensorFlow/&title=《Windows下深度学习的虚拟环境搭建》 — 重庆大学机械学院唐倩团队&pic=http://tqcqu.github.io/img/avatar.bmp" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tqcqu.github.io/606-win-anaconda-TensorFlow/&title=《Windows下深度学习的虚拟环境搭建》 — 重庆大学机械学院唐倩团队&source=本文内容：1、Windows下深度学习的虚拟环境搭建，涉及到anaconda、cuda、cudnn、tensorflow安装。
+维护：吴海鹏（2020秋入..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://tqcqu.github.io/606-win-anaconda-TensorFlow/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Windows下深度学习的虚拟环境搭建》 — 重庆大学机械学院唐倩团队&url=http://tqcqu.github.io/606-win-anaconda-TensorFlow/&via=http://tqcqu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://tqcqu.github.io/606-win-anaconda-TensorFlow/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>唐倩 &copy; 2015 - 2022</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://tqcqu.github.io/606-win-anaconda-TensorFlow/&title=《Windows下深度学习的虚拟环境搭建》 — 重庆大学机械学院唐倩团队&pic=http://tqcqu.github.io/img/avatar.bmp" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tqcqu.github.io/606-win-anaconda-TensorFlow/&title=《Windows下深度学习的虚拟环境搭建》 — 重庆大学机械学院唐倩团队&source=本文内容：1、Windows下深度学习的虚拟环境搭建，涉及到anaconda、cuda、cudnn、tensorflow安装。
+维护：吴海鹏（2020秋入..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://tqcqu.github.io/606-win-anaconda-TensorFlow/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Windows下深度学习的虚拟环境搭建》 — 重庆大学机械学院唐倩团队&url=http://tqcqu.github.io/606-win-anaconda-TensorFlow/&via=http://tqcqu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://tqcqu.github.io/606-win-anaconda-TensorFlow/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://tqcqu.github.io/606-win-anaconda-TensorFlow/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

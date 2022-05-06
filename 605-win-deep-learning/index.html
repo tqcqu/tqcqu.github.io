@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Windows下深度学习环境搭建 | 重庆大学机械学院唐倩团队</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content>
+    <meta name="description" content="本文内容：1、Windows下深度学习环境搭建，涉及到anaconda、cuda、cudnn、pytorch安装。 维护：吴海鹏（2020秋入学硕士生） 部署：郭伏雨（博士生）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下深度学习环境搭建">
+<meta property="og:url" content="http://tqcqu.github.io/605-win-deep-learning/index.html">
+<meta property="og:site_name" content="重庆大学机械学院唐倩团队">
+<meta property="og:description" content="本文内容：1、Windows下深度学习环境搭建，涉及到anaconda、cuda、cudnn、pytorch安装。 维护：吴海鹏（2020秋入学硕士生） 部署：郭伏雨（博士生）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-05-06T14:29:54.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows下深度学习环境搭建">
+<meta name="twitter:description" content="本文内容：1、Windows下深度学习环境搭建，涉及到anaconda、cuda、cudnn、pytorch安装。 维护：吴海鹏（2020秋入学硕士生） 部署：郭伏雨（博士生）">
+    
+        <link rel="alternate" type="application/atom+xml" title="重庆大学机械学院唐倩团队" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.bmp">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.bmp">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">唐倩</h5>
+          <a href="mailto:tqcqu@cqu.edu.cn" title="tqcqu@cqu.edu.cn" class="mail">tqcqu@cqu.edu.cn</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Windows下深度学习环境搭建</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Windows下深度学习环境搭建</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="1970-01-01T00:00:00.000Z" itemprop="datePublished" class="page-time">
+  1970-01-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Windows下深度学习环境搭建"><span class="post-toc-number">1.</span> <span class="post-toc-text">Windows下深度学习环境搭建</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置环境总体思路：依据python版本选择对应Anaconda版本；"><span class="post-toc-number">1.0.0.1.</span> <span class="post-toc-text">配置环境总体思路：依据python版本选择对应Anaconda版本；</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#依据显卡驱动版本选择对应的CUDA版本；"><span class="post-toc-number">1.0.0.2.</span> <span class="post-toc-text">依据显卡驱动版本选择对应的CUDA版本；</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#依据CUDA版本选择对应的cudnn和pytorch版本。"><span class="post-toc-number">1.0.0.3.</span> <span class="post-toc-text">依据CUDA版本选择对应的cudnn和pytorch版本。</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#实验室目前配置的是：python3-7版本（有已下好的搭建环境所需软件）"><span class="post-toc-number">1.0.0.3.1.</span> <span class="post-toc-text">实验室目前配置的是：python3.7版本（有已下好的搭建环境所需软件）</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一步：Anaconda安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">第一步：Anaconda安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、由于anaconda自带Python，只需确定要安装的Python版本，然后下载对应的anaconda版本安装包。"><span class="post-toc-number">1.1.0.1.</span> <span class="post-toc-text">一、由于anaconda自带Python，只需确定要安装的Python版本，然后下载对应的anaconda版本安装包。</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、下载地址："><span class="post-toc-number">1.1.0.2.</span> <span class="post-toc-text">二、下载地址：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三、安装教程："><span class="post-toc-number">1.1.0.3.</span> <span class="post-toc-text">三、安装教程：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四、配置环境变量"><span class="post-toc-number">1.1.0.4.</span> <span class="post-toc-text">四、配置环境变量</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#此电脑——属性——高级系统设置——环境变量——path——编辑——新建"><span class="post-toc-number">1.1.0.4.1.</span> <span class="post-toc-text">此电脑——属性——高级系统设置——环境变量——path——编辑——新建</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#五、安装测试："><span class="post-toc-number">1.1.0.5.</span> <span class="post-toc-text">五、安装测试：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二步：CUDA安装"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">第二步：CUDA安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、确定版本"><span class="post-toc-number">1.2.0.1.</span> <span class="post-toc-text">一、确定版本</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#控制面板——硬件和声音——NVIDIA控制面板——帮助——系统信息——组件"><span class="post-toc-number">1.2.0.1.1.</span> <span class="post-toc-text">控制面板——硬件和声音——NVIDIA控制面板——帮助——系统信息——组件</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、安装步骤"><span class="post-toc-number">1.2.0.2.</span> <span class="post-toc-text">二、安装步骤</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三、测试"><span class="post-toc-number">1.2.0.3.</span> <span class="post-toc-text">三、测试</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四、添加至系统变量"><span class="post-toc-number">1.2.0.4.</span> <span class="post-toc-text">四、添加至系统变量</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三步：cuDNN配置"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">第三步：cuDNN配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四步：pytorch安装（使用清华镜像）"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">第四步：pytorch安装（使用清华镜像）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#一、打开-Anaconda-Prompt"><span class="post-toc-number">1.4.0.1.</span> <span class="post-toc-text">一、打开   Anaconda Prompt</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#二、添加清华镜像"><span class="post-toc-number">1.4.0.2.</span> <span class="post-toc-text">二、添加清华镜像</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#三、添加pytorch镜像"><span class="post-toc-number">1.4.0.3.</span> <span class="post-toc-text">三、添加pytorch镜像</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#四、安装pytorch"><span class="post-toc-number">1.4.0.4.</span> <span class="post-toc-text">四、安装pytorch</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#五、注意事项"><span class="post-toc-number">1.4.0.5.</span> <span class="post-toc-text">五、注意事项</span></a></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-605-win-deep-learning"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Windows下深度学习环境搭建</h1>
+        <div class="post-meta">
+            <time class="post-time" title="1970-01-01 08:00:00" datetime="1970-01-01T00:00:00.000Z"  itemprop="datePublished">1970-01-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文内容：1、Windows下深度学习环境搭建，涉及到anaconda、cuda、cudnn、pytorch安装。</p>
+<p>维护：<code>吴海鹏（2020秋入学硕士生）</code></p>
+<p>部署：<code>郭伏雨（博士生）</code></p>
+<a id="more"></a>
+
+<h1 id="Windows下深度学习环境搭建"><a href="#Windows下深度学习环境搭建" class="headerlink" title="Windows下深度学习环境搭建"></a><strong>Windows下深度学习环境搭建</strong></h1><h4 id="配置环境总体思路：依据python版本选择对应Anaconda版本；"><a href="#配置环境总体思路：依据python版本选择对应Anaconda版本；" class="headerlink" title="配置环境总体思路：依据python版本选择对应Anaconda版本；"></a>配置环境总体思路：依据python版本选择对应Anaconda版本；</h4><h4 id="依据显卡驱动版本选择对应的CUDA版本；"><a href="#依据显卡驱动版本选择对应的CUDA版本；" class="headerlink" title="依据显卡驱动版本选择对应的CUDA版本；"></a>依据显卡驱动版本选择对应的CUDA版本；</h4><h4 id="依据CUDA版本选择对应的cudnn和pytorch版本。"><a href="#依据CUDA版本选择对应的cudnn和pytorch版本。" class="headerlink" title="依据CUDA版本选择对应的cudnn和pytorch版本。"></a>依据CUDA版本选择对应的cudnn和pytorch版本。</h4><h5 id="实验室目前配置的是：python3-7版本（有已下好的搭建环境所需软件）"><a href="#实验室目前配置的是：python3-7版本（有已下好的搭建环境所需软件）" class="headerlink" title="实验室目前配置的是：python3.7版本（有已下好的搭建环境所需软件）"></a>实验室目前配置的是：python3.7版本（有已下好的搭建环境所需软件）</h5><h2 id="第一步：Anaconda安装"><a href="#第一步：Anaconda安装" class="headerlink" title="第一步：Anaconda安装"></a>第一步：Anaconda安装</h2><h4 id="一、由于anaconda自带Python，只需确定要安装的Python版本，然后下载对应的anaconda版本安装包。"><a href="#一、由于anaconda自带Python，只需确定要安装的Python版本，然后下载对应的anaconda版本安装包。" class="headerlink" title="一、由于anaconda自带Python，只需确定要安装的Python版本，然后下载对应的anaconda版本安装包。"></a><strong>一、</strong>由于anaconda自带Python，只需确定要安装的Python版本，然后下载对应的anaconda版本安装包。</h4><h4 id="二、下载地址："><a href="#二、下载地址：" class="headerlink" title="二、下载地址："></a><strong>二、下载地址</strong>：</h4><p>​        1.官网  <a href="https://www.anaconda.com/products/individual" target="_blank" rel="noopener">https://www.anaconda.com/products/individual</a></p>
+<p>​        2.清华源  <a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/</a></p>
+<p>​        注：若官网下载速度慢，可用清华源下载；注意操作系统的位数（一般是64位的）</p>
+<h4 id="三、安装教程："><a href="#三、安装教程：" class="headerlink" title="三、安装教程："></a>三、安装教程：</h4><p>​       1.双击运行下载的.exe文件，按照以下顺序点击：Next → I Agree</p>
+<p>​       2.选择用户：Just Me 或 All Users 都可以，默认选择 Just Me</p>
+<p>​       3.选择安装目录：一般不建议安装到C盘；可更改安装路径，注意安装路径不能出现中文、空格，使用纯英文即可。</p>
+<p>​       4.勾选安装参数：一是添加anaconda到环境变量中（path），二是将anaconda的python版本作为默认的python版本； 建议两者都勾选，环境变量手动再添加一遍（后续有介绍）。</p>
+<p>​       5.等待安装即可，结束时最后 “两个learn” 都不需要勾选，点击Finish即可。</p>
+<h4 id="四、配置环境变量"><a href="#四、配置环境变量" class="headerlink" title="四、配置环境变量"></a>四、配置环境变量</h4><h5 id="此电脑——属性——高级系统设置——环境变量——path——编辑——新建"><a href="#此电脑——属性——高级系统设置——环境变量——path——编辑——新建" class="headerlink" title="此电脑——属性——高级系统设置——环境变量——path——编辑——新建"></a>此电脑——属性——高级系统设置——环境变量——path——编辑——新建</h5><p>​       1.鼠标选择”此电脑“，单击鼠标右键，选择 ”<strong>属性</strong>“；</p>
+<p>​       2.左键单击左侧一栏的 “高级系统设置”；</p>
+<p>​       3.点击 “高级”一栏中的 “环境变量”；</p>
+<p>​       4.点击 “系统变量”中的 “Path”项，选择编辑；</p>
+<p>​       5.点击 “新建”，然后添加以下类似路径（保证最后路径的文件名称相同就行）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">E:\Anaconda     （Python需要）</span><br><span class="line">E:\Anaconda\Scripts        （conda自带脚本）</span><br><span class="line">E:\Anaconda\Library\mingw-w64\bin     （使用C with python的时候） </span><br><span class="line">E:\Anaconda\Library\bin               （jupyter notebook动态库）</span><br><span class="line">E:\Anaconda\Library\usr\bin  （我自己没找到此文件夹，若存在可将此条也加上）</span><br></pre></td></tr></table></figure>
+
+<p>注：切记记得点击  确定  !!!</p>
+<h4 id="五、安装测试："><a href="#五、安装测试：" class="headerlink" title="五、安装测试："></a>五、安装测试：</h4><ol>
+<li><p>win+R，输入cmd，进入命令提示符</p>
+</li>
+<li><p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br></pre></td></tr></table></figure>
+
+<p>若跳出conda版本，则表示anaconda安装成功，且已经配置好环境变量。</p>
+</li>
+</ol>
+<h2 id="第二步：CUDA安装"><a href="#第二步：CUDA安装" class="headerlink" title="第二步：CUDA安装"></a>第二步：CUDA安装</h2><h4 id="一、确定版本"><a href="#一、确定版本" class="headerlink" title="一、确定版本"></a>一、确定版本</h4><h5 id="控制面板——硬件和声音——NVIDIA控制面板——帮助——系统信息——组件"><a href="#控制面板——硬件和声音——NVIDIA控制面板——帮助——系统信息——组件" class="headerlink" title="控制面板——硬件和声音——NVIDIA控制面板——帮助——系统信息——组件"></a>控制面板——硬件和声音——NVIDIA控制面板——帮助——系统信息——组件</h5><p>​     1.第三行，NVCUDA64.DLL  可查看显卡驱动版本支持的最高CUDA版本；</p>
+<p>​      2.网页搜索相应CUDA版本安装，建议不需要安装太新版本。网页直接可查找；</p>
+<h4 id="二、安装步骤"><a href="#二、安装步骤" class="headerlink" title="二、安装步骤"></a>二、安装步骤</h4><p>​     1.双击运行.exe文件后，前两项是默认安装；</p>
+<p>​     2.当选择安装选项时，选择自定义安装，驱动程序组件第一次安装尽量全选；</p>
+<p>​     3.记得留意CUDA安装位置，之后cudnn的安装会用到！！</p>
+<h4 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a>三、测试</h4><p>​     1.win+R，输入cmd，进入命令提示符</p>
+<p>​     2.输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br></pre></td></tr></table></figure>
+
+<h4 id="四、添加至系统变量"><a href="#四、添加至系统变量" class="headerlink" title="四、添加至系统变量"></a>四、添加至系统变量</h4><p>​      1. 添加方法与anaconda的相同：<strong>此电脑——属性——高级系统设置——环境变量——path——编辑——新建</strong></p>
+<p>​      2.添加以下类似路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin</span><br><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\include</span><br><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\lib</span><br><span class="line">C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\libnvvp</span><br></pre></td></tr></table></figure>
+
+<p>​      3.有些路径在安装时可能已经添加，手动补充没有的即可</p>
+<h2 id="第三步：cuDNN配置"><a href="#第三步：cuDNN配置" class="headerlink" title="第三步：cuDNN配置"></a>第三步：cuDNN配置</h2><p>​      1.进入官网依照cuda版本选择cudnn文件下载（需要注册账号）</p>
+<p>​         <a href="https://developer.nvidia.cn/zh-cn/cuda-toolkit" target="_blank" rel="noopener">https://developer.nvidia.cn/zh-cn/cuda-toolkit</a> </p>
+<p>​      2.解压下载的cudnn文件，会获得三个文件夹：bin、include、lib；</p>
+<p>​      3.将这三个文件夹复制到之前CUDA的安装路径里，最后一个路径名应是cuda版本号</p>
+<p>​      4.CUDA安装时若是默认路径，则一般为：C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0</p>
+<h2 id="第四步：pytorch安装（使用清华镜像）"><a href="#第四步：pytorch安装（使用清华镜像）" class="headerlink" title="第四步：pytorch安装（使用清华镜像）"></a>第四步：pytorch安装（使用清华镜像）</h2><h4 id="一、打开-Anaconda-Prompt"><a href="#一、打开-Anaconda-Prompt" class="headerlink" title="一、打开   Anaconda Prompt"></a>一、打开   <strong>Anaconda Prompt</strong></h4><h4 id="二、添加清华镜像"><a href="#二、添加清华镜像" class="headerlink" title="二、添加清华镜像"></a>二、添加清华镜像</h4><p>​       依次输入下列三行代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --set show_channel_urls yes</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、添加pytorch镜像"><a href="#三、添加pytorch镜像" class="headerlink" title="三、添加pytorch镜像"></a>三、添加pytorch镜像</h4><p>​       接着输入下列代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/win-64/</span><br></pre></td></tr></table></figure>
+
+<h4 id="四、安装pytorch"><a href="#四、安装pytorch" class="headerlink" title="四、安装pytorch"></a>四、安装pytorch</h4><p>​       进入官网   <a href="https://pytorch.org/" target="_blank" rel="noopener">https://pytorch.org/</a></p>
+<p>​       ①在官网根据自己之前安装的环境依次选择，然后复制官网给出的命令语：</p>
+<p>​       <strong>Install——stable——Windows——conda——python——10.2  （以cuda10.2为例）</strong></p>
+<p>​       ②若按照上列方式官网提供的cuda版本过高，点击上方的 <strong>“ install previous versions of pytroch”</strong>，选择旧版本</p>
+<p>​       ③根据不同的版本搜索自己的下载语句，记住去掉 <strong>-c pytorch</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda insatll pytorch torchvision torchaudio cudatookit=10.2  （以cuda10.2为例）</span><br></pre></td></tr></table></figure>
+
+<h4 id="五、注意事项"><a href="#五、注意事项" class="headerlink" title="五、注意事项"></a>五、注意事项</h4><p>​       <strong>如果以前安装过pytorch或者安装失败过，在安装前执行下面两条语句：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda uninstall pytorch</span><br><span class="line">conda uninstall libtorch</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2022-05-06T14:29:54.321Z" itemprop="dateUpdated">2022-05-06 22:29:54</time>
+</span><br>
+
+
+        
+    </div>
+    
+    <footer>
+        <a href="http://tqcqu.github.io">
+            <img src="/img/avatar.bmp" alt="唐倩">
+            唐倩
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://tqcqu.github.io/605-win-deep-learning/&title=《Windows下深度学习环境搭建》 — 重庆大学机械学院唐倩团队&pic=http://tqcqu.github.io/img/avatar.bmp" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tqcqu.github.io/605-win-deep-learning/&title=《Windows下深度学习环境搭建》 — 重庆大学机械学院唐倩团队&source=本文内容：1、Windows下深度学习环境搭建，涉及到anaconda、cuda、cudnn、pytorch安装。
+维护：吴海鹏（2020秋入学硕士生）
+..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://tqcqu.github.io/605-win-deep-learning/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Windows下深度学习环境搭建》 — 重庆大学机械学院唐倩团队&url=http://tqcqu.github.io/605-win-deep-learning/&via=http://tqcqu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://tqcqu.github.io/605-win-deep-learning/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>唐倩 &copy; 2015 - 2022</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://tqcqu.github.io/605-win-deep-learning/&title=《Windows下深度学习环境搭建》 — 重庆大学机械学院唐倩团队&pic=http://tqcqu.github.io/img/avatar.bmp" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://tqcqu.github.io/605-win-deep-learning/&title=《Windows下深度学习环境搭建》 — 重庆大学机械学院唐倩团队&source=本文内容：1、Windows下深度学习环境搭建，涉及到anaconda、cuda、cudnn、pytorch安装。
+维护：吴海鹏（2020秋入学硕士生）
+..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://tqcqu.github.io/605-win-deep-learning/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Windows下深度学习环境搭建》 — 重庆大学机械学院唐倩团队&url=http://tqcqu.github.io/605-win-deep-learning/&via=http://tqcqu.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://tqcqu.github.io/605-win-deep-learning/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://tqcqu.github.io/605-win-deep-learning/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
